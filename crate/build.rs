@@ -40,7 +40,7 @@ fn main() {
   let target_os = std::env::var("CARGO_CFG_TARGET_OS").unwrap_or_default();
   let target_arch = std::env::var("CARGO_CFG_TARGET_ARCH").unwrap_or_default();
   match (&*target_os, &*target_arch) {
-    ("windows", "x86_64") | ("linux" | "macos", "x86_64" | "aarch64") => {
+    ("windows" | "linux" | "macos", "x86_64" | "aarch64") => {
       let path = PathBuf::from("src").join(format!("bindings_{}_{}.rs", target_os, target_arch));
       let dest = PathBuf::from(std::env::var("OUT_DIR").unwrap()).join("bindings.rs");
       std::fs::copy(&path, &dest).unwrap();
